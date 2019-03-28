@@ -50,11 +50,14 @@ public class BinaryTreeLeafNodeSum {
         BinaryTreeNode root = new BinaryTreeNode(1);
         BinaryTreeNode binaryTreeNode1 = new BinaryTreeNode(1);
         BinaryTreeNode binaryTreeNode11 = new BinaryTreeNode(1);
-        BinaryTreeNode binaryTreeNode2 = new BinaryTreeNode(1);
-        BinaryTreeNode binaryTreeNode22 = new BinaryTreeNode(1);
-        BinaryTreeNode binaryTreeNode222 = new BinaryTreeNode(1);
+        BinaryTreeNode binaryTreeNode2 = new BinaryTreeNode(2);
+        BinaryTreeNode binaryTreeNode22 = new BinaryTreeNode(22);
+        BinaryTreeNode binaryTreeNode222 = new BinaryTreeNode(22);
         root.leftNode =binaryTreeNode1;
         root.rightNode=binaryTreeNode11;
+        binaryTreeNode1.leftNode=binaryTreeNode2;
+        binaryTreeNode11.leftNode=binaryTreeNode22;
+        binaryTreeNode11.rightNode=binaryTreeNode222;
         return root;
     }
 
