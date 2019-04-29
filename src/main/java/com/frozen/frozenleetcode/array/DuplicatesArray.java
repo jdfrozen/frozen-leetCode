@@ -1,4 +1,4 @@
-package com.frozen.frozenleetcode.array.DuplicatesArray;
+package com.frozen.frozenleetcode.array;
 
 /**
  * @Auther: frozen
