@@ -19,6 +19,8 @@ public class SurroundedRegions {
         char[][] board = new char[][]{
                 {'X', 'X', 'X'},
                 {'X', 'O', 'X'},
+                {'X', 'X', 'O'},
+                {'X', 'O', 'X'},
                 {'X', 'X', 'O'}
         };
         SurroundedRegions surroundedRegions =  new SurroundedRegions();
