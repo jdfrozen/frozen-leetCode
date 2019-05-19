@@ -17,13 +17,13 @@ import java.util.*;
 public class SurroundedRegions {
     public static void main(String[] args) {
         char[][] board = new char[][]{
-                {'X','X','X','X','X'},
-                {'X','O','O','O','X'},
-                {'X','X','O','O','X'},
-                {'X','X','X','O','X'},
-                {'X','O','X','X','X'}
+                {'X', 'X', 'X', 'X', 'X'},
+                {'X', 'O', 'O', 'O', 'X'},
+                {'X', 'X', 'O', 'O', 'X'},
+                {'X', 'X', 'X', 'O', 'X'},
+                {'X', 'O', 'X', 'X', 'X'}
         };
-        SurroundedRegions surroundedRegions =  new SurroundedRegions();
+        SurroundedRegions surroundedRegions = new SurroundedRegions();
         surroundedRegions.solve(board);
         for (char[] nums : board) {
             System.out.println(Arrays.toString(nums));
@@ -48,14 +48,14 @@ public class SurroundedRegions {
         for (int h = 0; h < high; h++) {
             for (int w = 0; w < wide; w++) {
                 char c = board[h][w];
-                String key = getKey(h,  w);
-                if(searchedSet.contains(key)){
-                    continue;
-                }
-                searchedSet.add(key);
                 if ('X' == c) {
                     continue;
                 }
+                String key = getKey(h, w);
+                if (searchedSet.contains(key)) {
+                    continue;
+                }
+                searchedSet.add(key);
                 //如果该点是边界
                 if (h == 0 || w == 0 || h == high - 1 || w == wide - 1) {
                     boundarySet.add(key);
@@ -68,10 +68,10 @@ public class SurroundedRegions {
                 char lower = board[h + 1][w];
                 char left = board[h][w - 1];
                 char right = board[h][w + 1];
-                boolean upperResult = search(board, upper, "upper", boundarySet, set, h - 1, w, high, wide);
-                boolean lowerResult = search(board, lower, "lower", boundarySet, set, h + 1, w, high, wide);
-                boolean leftResult = search(board, left, "left", boundarySet, set, h, w - 1, high, wide);
-                boolean rightResult = search(board, right, "right", boundarySet, set, h, w + 1, high, wide);
+                boolean upperResult = search(board, upper,  boundarySet, set, h - 1, w, high, wide);
+                boolean lowerResult = search(board, lower,  boundarySet, set, h + 1, w, high, wide);
+                boolean leftResult = search(board, left,  boundarySet, set, h, w - 1, high, wide);
+                boolean rightResult = search(board, right,  boundarySet, set, h, w + 1, high, wide);
                 //被围住，则进行O->X转换
                 if (upperResult && lowerResult && leftResult && rightResult) {
                     for (String s : set) {
@@ -89,9 +89,9 @@ public class SurroundedRegions {
     }
 
     /**
+     *
      * @param board
      * @param c
-     * @param direction
      * @param boundarySet
      * @param set
      * @param h
@@ -100,20 +100,20 @@ public class SurroundedRegions {
      * @param wide
      * @return
      */
-    private Boolean search(char[][] board, char c, String direction, Set<String> boundarySet, Set<String> set, int h, int w, int high, int wide) {
+    private Boolean search(char[][] board, char c, Set<String> boundarySet, Set<String> set, int h, int w, int high, int wide) {
         if ('X' == c) {
             return true;
         }
-        String key = getKey(h,  w);
-        if(set.contains(key)){
+        String key = getKey(h, w);
+        if (set.contains(key)) {
             return true;
         }
+        set.add(key);
         //如果该点是边界
         if (h == 0 || w == 0 || h == high - 1 || w == wide - 1) {
             boundarySet.add(key);
             return false;
         }
-        set.add(key);
         if (boundarySet.contains(c)) {
             return false;
         }
@@ -121,54 +121,18 @@ public class SurroundedRegions {
         char lower = board[h + 1][w];
         char left = board[h][w - 1];
         char right = board[h][w + 1];
-        boolean upperResult = false;
-        boolean lowerResult = false;
-        boolean leftResult = false;
-        boolean rightResult = false;
-        switch (direction) {
-            case "upper":
-                upperResult = search(board, upper, "upper", boundarySet, set, h - 1, w, high, wide);
-                leftResult = search(board, left, "left", boundarySet, set, h, w - 1, high, wide);
-                rightResult = search(board, right, "right", boundarySet, set, h, w + 1, high, wide);
-                if (upperResult && leftResult && rightResult) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "lower":
-                lowerResult = search(board, lower, "lower", boundarySet, set, h + 1, w, high, wide);
-                leftResult = search(board, left, "left", boundarySet, set, h, w - 1, high, wide);
-                rightResult = search(board, right, "right", boundarySet, set, h, w + 1, high, wide);
-                if (lowerResult && leftResult && rightResult) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "left":
-                upperResult = search(board, upper, "upper", boundarySet, set, h - 1, w, high, wide);
-                lowerResult = search(board, lower, "lower", boundarySet, set, h + 1, w, high, wide);
-                leftResult = search(board, left, "left", boundarySet, set, h, w - 1, high, wide);
-                if (upperResult && lowerResult && leftResult) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case "right":
-                upperResult = search(board, upper, "upper", boundarySet, set, h - 1, w, high, wide);
-                lowerResult = search(board, lower, "lower", boundarySet, set, h + 1, w, high, wide);
-                rightResult = search(board, right, "right", boundarySet, set, h, w + 1, high, wide);
-                if (upperResult && lowerResult && rightResult) {
-                    return true;
-                } else {
-                    return false;
-                }
-            default:
-                break;
+        boolean upperResult = search(board, upper, boundarySet, set, h - 1, w, high, wide);
+        boolean lowerResult = search(board, lower, boundarySet, set, h + 1, w, high, wide);
+        boolean leftResult = search(board, left, boundarySet, set, h, w - 1, high, wide);
+        boolean rightResult = search(board, right, boundarySet, set, h, w + 1, high, wide);
+        if (upperResult && lowerResult && leftResult && rightResult) {
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-    private String getKey(int h, int w){
+    private String getKey(int h, int w) {
         return String.valueOf(h) + "&" + String.valueOf(w);
     }
 }
