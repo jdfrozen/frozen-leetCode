@@ -1,7 +1,5 @@
 package com.frozen.frozenleetcode.array;
 
-import org.springframework.util.StringUtils;
-
 import java.util.*;
 
 /**
@@ -42,7 +40,7 @@ public class SurroundedRegions {
             return;
         }
         int wide = board[0].length;
-        //key是坐标位置h&w来表示,表示边界
+        //key是坐标位置h&w来表示,表示边界，高级的做法是用数组定位！！！！！！
         Set<String> boundarySet = new HashSet<>();
         Set<String> searchedSet = new HashSet<>();
         for (int h = 0; h < high; h++) {
