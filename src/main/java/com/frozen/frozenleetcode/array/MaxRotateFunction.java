@@ -12,10 +12,48 @@ package com.frozen.frozenleetcode.array;
  **/
 public class MaxRotateFunction {
     public static void main(String[] args) {
-
+        MaxRotateFunction function = new MaxRotateFunction();
+        int[] A = new int[]{2, 3, 2};
+        System.out.println(function.maxRotateFunction(A));
     }
 
     public int maxRotateFunction(int[] A) {
-        return 0;
+        if (A == null) {
+            return 0;
+        }
+        int n = A.length;
+        if (n == 0 || n > 105) {
+            return 0;
+        }
+        int max = 0;
+        for(int i = 0; i < n; i++){
+            int result = this.f(A,i);
+            if(result>max){
+                max = result;
+            }
+        }
+        return max;
+    }
+
+    /**
+     *
+     * @param Bk
+     * @param k
+     * @return
+     */
+    private int f(int[] Bk, int k) {
+        int n = Bk.length;
+        int sum = 0;
+        //对旋转后的数组进行公式的求和
+        for (int i = 0; i < n; i++) {
+            int index = i + k;
+            //如果index大于等于N
+            if (index >= n) {
+                index = index-n;
+            }
+            int result = i * Bk[index];
+            sum = sum + result;
+        }
+        return sum;
     }
 }
