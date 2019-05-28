@@ -24,7 +24,7 @@ public class CyclicInterval {
                     number = 0;
                 } else {
                     if (cyclicInterval.isGiveAnAlarm(number)) {
-                        poolExecutor.execute(new GiveAnAlarm(number));
+                        poolExecutor.execute(new GiveAnAlarm());
                     }
                     number++;
                 }
@@ -48,6 +48,7 @@ public class CyclicInterval {
     }
 
     /**
+     *
      * @param number
      * @return
      */
@@ -55,7 +56,10 @@ public class CyclicInterval {
         if (number == 0) {
             return true;
         }
-        if (number == 10) {
+        if (number == 60) {
+            return true;
+        }
+        if (number == 600) {
             return true;
         }
         return false;
@@ -66,17 +70,11 @@ public class CyclicInterval {
      * 异步告警
      */
     static class GiveAnAlarm implements Runnable {
-        private int number;
-
-        public GiveAnAlarm(int number) {
-            this.number = number;
-        }
 
         @Override
         public void run() {
             try {
-                Thread.sleep(number);
-                System.out.println("异常告警时间：" + number);
+                System.out.println("异常告警");
             } catch (Exception e) {
                 e.printStackTrace();
             }
