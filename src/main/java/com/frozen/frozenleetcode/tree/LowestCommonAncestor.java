@@ -2,6 +2,7 @@ package com.frozen.frozenleetcode.tree;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author: Frozen
@@ -42,18 +43,35 @@ public class LowestCommonAncestor {
         if (root == null || p == null || q == null) {
             return null;
         }
-        LinkTreeNode pParent=null;
-        LinkTreeNode qParent=null;
-        LinkTreeNode parent=new LinkTreeNode(root);
+        LinkTreeNode pParent = null;
+        LinkTreeNode qParent = null;
+        LinkTreeNode parent = new LinkTreeNode(root);
         LinkTreeNode rootParent = parent;
+        Stack<TreeNode> stack = new Stack<>();
 
 
-
-        findNodeParent(rootParent,parent,pParent, qParent, root, p, q);
+        while (root!=null||!stack.isEmpty()) {
+            while (root != null) {
+                if(q.equals(root)){
+                    qParent= copyParent(rootParent);
+                }
+                if(p.equals(root)){
+                    pParent= copyParent(rootParent);
+                }
+                stack.push(root);
+                root = root.left;
+                parent.next = new LinkTreeNode(root);
+                parent = parent.next;
+            }
+            if(!stack.isEmpty()){
+                root = stack.pop();
+                root = root.right;
+            }
+        }
         while (true) {
             TreeNode pp = pParent.node;
             TreeNode qp = qParent.node;
-            if (pp.equals(qp)) {
+            if (!pp.equals(qp)) {
                 return pp;
             } else {
                 pParent = pParent.next;
@@ -62,33 +80,12 @@ public class LowestCommonAncestor {
         }
     }
 
-    private void findNodeParent(LinkTreeNode root,LinkTreeNode parent,LinkTreeNode pParent, LinkTreeNode qParent, TreeNode node, TreeNode p, TreeNode q) {
-        if(parent!=null&&pParent!=null){
-            return;
-        }
-        if (node.equals(p)) {
-            pParent = copyParent( root);
-        }
-        if ( node.equals(q)) {
-            qParent = copyParent( root);
-        }
-        TreeNode left = node.left;
-        if (left != null) {
-            parent.next = new LinkTreeNode(left);
-            findNodeParent(root,parent.next,pParent, qParent, left, p, q);
-        }
-        TreeNode right = node.right;
-        if (right != null) {
-            parent.next = new LinkTreeNode(right);
-            findNodeParent(root,parent.next,pParent, qParent, right, p, q);
-        }
 
-    }
-    private LinkTreeNode copyParent(LinkTreeNode root){
+    private LinkTreeNode copyParent(LinkTreeNode root) {
         LinkTreeNode rootTemp = root;
         LinkTreeNode temp = new LinkTreeNode(rootTemp.node);
         LinkTreeNode linkTreeNode = temp;
-        while (rootTemp.next!=null) {
+        while (rootTemp.next != null) {
             rootTemp = rootTemp.next;
             temp.next = new LinkTreeNode(rootTemp.node);
             temp = temp.next;
