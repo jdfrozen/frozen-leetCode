@@ -14,7 +14,7 @@ package com.frozen.frozenleetcode.array;
 public class MaxRotateFunction {
     public static void main(String[] args) {
         MaxRotateFunction function = new MaxRotateFunction();
-        int[] A = new int[]{2, 3, 2};
+        int[] A = new int[]{-2147483648,-2147483648};
         System.out.println(function.maxRotateFunction(A));
     }
 
@@ -23,13 +23,14 @@ public class MaxRotateFunction {
             return 0;
         }
         int n = A.length;
-        if (n == 0 || n > 105) {
+
+        if (n == 0 || n > Math.pow(10,5)) {
             return 0;
         }
-        int max = 0;
+        Integer max = null;
         for(int i = 0; i < n; i++){
             int result = this.f(A,i);
-            if(result>max){
+            if(max==null||result>max){
                 max = result;
             }
         }

@@ -56,10 +56,10 @@ public class CyclicInterval {
         if (number == 0) {
             return true;
         }
-        if (number == 60) {
+        if (number == 1) {
             return true;
         }
-        if (number == 600) {
+        if (number == 2) {
             return true;
         }
         return false;
