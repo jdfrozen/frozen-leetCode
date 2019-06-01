@@ -1,5 +1,7 @@
 package com.frozen.frozenleetcode.tree;
 
+import java.util.List;
+
 /**
  * @author: Frozen
  * @create: 2019-05-29 20:31
@@ -17,10 +19,26 @@ public class LowestCommonAncestor {
     }
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root==null){
+        if (root == null || p == null || q == null) {
             return null;
         }
 
+        return null;
+    }
+
+    private List<TreeNode> findNodeParent(List<TreeNode> nodeParent, TreeNode node, TreeNode p) {
+        if (node.equals(p)) {
+            return nodeParent;
+        }
+        nodeParent.add(node);
+        TreeNode left = node.left;
+        if (left != null) {
+            findNodeParent(nodeParent, left, p);
+        }
+        TreeNode right = node.right;
+        if (right != null) {
+            findNodeParent(nodeParent, left, p);
+        }
         return null;
     }
 
@@ -28,6 +46,7 @@ public class LowestCommonAncestor {
         int val;
         TreeNode left;
         TreeNode right;
+
         TreeNode(int x) {
             val = x;
         }
