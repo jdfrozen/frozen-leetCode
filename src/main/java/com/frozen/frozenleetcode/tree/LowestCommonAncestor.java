@@ -15,6 +15,9 @@ import java.util.Stack;
  * Given the following binary tree:  root = [3,5,1,6,2,0,8,null,null,7,4]
  **/
 public class LowestCommonAncestor {
+    static  LinkedList<TreeNode> pParent ;
+   static LinkedList<TreeNode> qParent;
+
     public static void main(String[] args) {
         LowestCommonAncestor ancestor = new LowestCommonAncestor();
         TreeNode pParent0 = new TreeNode(0);
@@ -35,7 +38,7 @@ public class LowestCommonAncestor {
         pParent1.right = pParent4;
         pParent2.left = pParent5;
         pParent2.right = pParent6;
-        TreeNode pppp = ancestor.lowestCommonAncestor(pParent0, pParent3, pParent4);
+        TreeNode pppp = ancestor.lowestCommonAncestor(pParent0, pParent2, pParent3);
         System.out.println(pppp.val);
     }
 
@@ -43,63 +46,55 @@ public class LowestCommonAncestor {
         if (root == null || p == null || q == null) {
             return null;
         }
-        LinkTreeNode pParent = null;
-        LinkTreeNode qParent = null;
-        LinkTreeNode parent = new LinkTreeNode(root);
-        LinkTreeNode rootParent = parent;
-        Stack<TreeNode> stack = new Stack<>();
-
-
-        while (root!=null||!stack.isEmpty()) {
-            while (root != null) {
-                if(q.equals(root)){
-                    qParent= copyParent(rootParent);
-                }
-                if(p.equals(root)){
-                    pParent= copyParent(rootParent);
-                }
-                stack.push(root);
-                root = root.left;
-                parent.next = new LinkTreeNode(root);
-                parent = parent.next;
-            }
-            if(!stack.isEmpty()){
-                root = stack.pop();
-                root = root.right;
-            }
-        }
+        LinkedList<TreeNode> parent = new LinkedList();
+        parent.add(root);
+        findNodeParent(parent, root, p, q);
+        TreeNode result=root;
         while (true) {
-            TreeNode pp = pParent.node;
-            TreeNode qp = qParent.node;
-            if (!pp.equals(qp)) {
-                return pp;
-            } else {
-                pParent = pParent.next;
-                qParent = qParent.next;
+            TreeNode pp = pParent.poll();
+            TreeNode qp = qParent.poll();
+            if(pp==null||qp==null){
+                break;
             }
+            if (!pp.equals(qp)) {
+                break;
+            }
+            result = pp;
+        }
+        return result;
+    }
+
+    private void findNodeParent(LinkedList<TreeNode> parent, TreeNode node, TreeNode p, TreeNode q) {
+        if(pParent!=null&&qParent!=null){
+            return;
+        }
+        if (node.equals(p)) {
+            pParent = copyParent(parent);
+        }
+        if (node.equals(q)) {
+            qParent = copyParent(parent);
+        }
+        TreeNode left = node.left;
+        if (left != null) {
+            parent.add(left);
+            findNodeParent(parent, left, p, q);
+            parent.pollLast();
+        }
+        TreeNode right = node.right;
+        if (right != null) {
+            parent.add(right);
+            findNodeParent(parent, right, p, q);
+            parent.pollLast();
         }
     }
 
 
-    private LinkTreeNode copyParent(LinkTreeNode root) {
-        LinkTreeNode rootTemp = root;
-        LinkTreeNode temp = new LinkTreeNode(rootTemp.node);
-        LinkTreeNode linkTreeNode = temp;
-        while (rootTemp.next != null) {
-            rootTemp = rootTemp.next;
-            temp.next = new LinkTreeNode(rootTemp.node);
-            temp = temp.next;
+    private LinkedList<TreeNode> copyParent(LinkedList<TreeNode> parent) {
+        LinkedList<TreeNode> linkTreeNode = new LinkedList();
+        for(TreeNode treeNode:parent){
+            linkTreeNode.add(treeNode);
         }
         return linkTreeNode;
-    }
-
-    static class LinkTreeNode {
-        TreeNode node;
-        LinkTreeNode next;
-
-        LinkTreeNode(TreeNode node) {
-            this.node = node;
-        }
     }
 
     static class TreeNode {
