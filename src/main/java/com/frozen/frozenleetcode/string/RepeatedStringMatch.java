@@ -11,9 +11,29 @@ package com.frozen.frozenleetcode.string;
  * The length of A and B will be between 1 and 10000.
  **/
 public class RepeatedStringMatch {
-
-
+    public static void main(String[] args){
+        RepeatedStringMatch repeatedStringMatch = new RepeatedStringMatch();
+        String A = "abcd";
+        String B = "cdabcdab";
+        System.out.println(repeatedStringMatch.repeatedStringMatch( A,  B));
+    }
     public int repeatedStringMatch(String A, String B) {
+        if(A==null||B==null||A==""||B==""||A.length()==0||B.length()==0){
+            return -1;
+        }
+        byte[] a = A.getBytes();
+        byte[] b = A.getBytes();
+        int indexb = 0;
+        for(int indexa = 0;indexa<A.length();indexa++){
+            if(b[indexb]==a[indexa]){
+                for(;indexb<B.length();indexb++){
+
+                }
+            }
+        }
+        if(indexb<=B.length()-1){
+            return -1;
+        }
         return -1;
     }
 }
