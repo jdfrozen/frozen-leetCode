@@ -22,18 +22,27 @@ public class RepeatedStringMatch {
             return -1;
         }
         byte[] a = A.getBytes();
-        byte[] b = A.getBytes();
+        byte[] b = B.getBytes();
+        int num=1;
         int indexb = 0;
-        for(int indexa = 0;indexa<A.length();indexa++){
+        for(int indexa = 0;indexa<a.length;indexa++){
             if(b[indexb]==a[indexa]){
-                for(;indexb<B.length();indexb++){
-
+                for(;indexb<b.length;indexb++){
+                    if(indexa>=a.length){
+                        indexa = indexa-a.length;
+                        num++;
+                    }
+                    if(b[indexb]!=a[indexa]){
+                        return -1;
+                    }
+                    indexa++;
                 }
+                break;
             }
         }
         if(indexb<=B.length()-1){
             return -1;
         }
-        return -1;
+        return num;
     }
 }
