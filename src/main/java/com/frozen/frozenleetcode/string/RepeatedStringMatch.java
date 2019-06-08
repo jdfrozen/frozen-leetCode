@@ -13,8 +13,8 @@ package com.frozen.frozenleetcode.string;
 public class RepeatedStringMatch {
     public static void main(String[] args){
         RepeatedStringMatch repeatedStringMatch = new RepeatedStringMatch();
-        String A = "abcd";
-        String B = "cdabcdab";
+        String A = "aabaa";
+        String B = "aaab";
         System.out.println(repeatedStringMatch.repeatedStringMatch( A,  B));
     }
     public int repeatedStringMatch(String A, String B) {
@@ -25,24 +25,32 @@ public class RepeatedStringMatch {
         byte[] b = B.getBytes();
         int num=1;
         int indexb = 0;
+        Boolean find = false;
         for(int indexa = 0;indexa<a.length;indexa++){
             if(b[indexb]==a[indexa]){
+                int ia = indexa;
                 for(;indexb<b.length;indexb++){
-                    if(indexa>=a.length){
-                        indexa = indexa-a.length;
+                    if(ia>=a.length){
+                        ia = ia-a.length;
                         num++;
                     }
-                    if(b[indexb]!=a[indexa]){
-                        return -1;
+                    if(b[indexb]!=a[ia]){
+                        break;
                     }
-                    indexa++;
+                    ia++;
                 }
-                break;
+                if(indexb==B.length()){
+                    find = true;
+                    break;
+                }
+                num=1;
+                indexb = 0;
             }
         }
-        if(indexb<=B.length()-1){
+        if(find) {
+            return num;
+        }else {
             return -1;
         }
-        return num;
     }
 }
