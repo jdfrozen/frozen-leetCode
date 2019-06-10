@@ -32,9 +32,6 @@ package com.frozen.frozenleetcode.array;
  * Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
  * Therefore, return 3 as the starting index.
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/gas-station
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  **/
 public class GasStation {
     public static void mian() {
@@ -45,6 +42,9 @@ public class GasStation {
     }
 
     public int canCompleteCircuit(int[] gas, int[] cost) {
+        if(gas==null||cost==null){
+            return -1;
+        }
         return -1;
     }
 }
