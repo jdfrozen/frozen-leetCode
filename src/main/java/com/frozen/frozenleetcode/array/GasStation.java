@@ -45,6 +45,9 @@ public class GasStation {
         if(gas==null||cost==null){
             return -1;
         }
+        if(gas.length!=cost.length){
+            return -1;
+        }
         return -1;
     }
 }
