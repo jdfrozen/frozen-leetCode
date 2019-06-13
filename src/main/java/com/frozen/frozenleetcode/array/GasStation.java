@@ -48,6 +48,14 @@ public class GasStation {
         if(gas.length!=cost.length){
             return -1;
         }
+        for(int i=0;i<gas.length;i++){
+            if(cost[i]>gas[i]){
+                //begin
+            }
+            for(int j=0;i<cost.length;j++){
+
+            }
+        }
         return -1;
     }
 }
