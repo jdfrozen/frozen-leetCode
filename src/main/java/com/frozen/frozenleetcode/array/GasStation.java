@@ -52,7 +52,7 @@ public class GasStation {
             if(cost[i]>gas[i]){
                 //begin
             }
-            for(int j=0;i<cost.length;j++){
+            for(int j=i;i<cost.length;j++){
 
             }
         }
