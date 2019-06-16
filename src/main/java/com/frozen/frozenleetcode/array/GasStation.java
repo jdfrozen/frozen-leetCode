@@ -36,8 +36,8 @@ package com.frozen.frozenleetcode.array;
 public class GasStation {
     public static void main(String[] args) {
         GasStation gasStation = new GasStation();
-        int[] gas = new int[]{1, 2, 3, 4, 5};
-        int[] cost = new int[]{3, 4, 5, 1, 2};
+        int[] gas = new int[]{2};
+        int[] cost = new int[]{2};
         System.out.println(gasStation.canCompleteCircuit(gas, cost));
     }
 
@@ -49,7 +49,7 @@ public class GasStation {
             return -1;
         }
         for(int i=0;i<gas.length;i++){
-            if(gas[i]>cost[i]){
+            if(gas[i]>=cost[i]){
                 //begin
                 if(isBegin( gas, cost,i)){
                     return i;
