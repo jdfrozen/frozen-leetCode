@@ -34,7 +34,7 @@ package com.frozen.frozenleetcode.array;
  * <p>
  **/
 public class GasStation {
-    public static void mian() {
+    public static void main(String[] args) {
         GasStation gasStation = new GasStation();
         int[] gas = new int[]{1, 2, 3, 4, 5};
         int[] cost = new int[]{3, 4, 5, 1, 2};
@@ -49,13 +49,38 @@ public class GasStation {
             return -1;
         }
         for(int i=0;i<gas.length;i++){
-            if(cost[i]>gas[i]){
+            if(gas[i]>cost[i]){
                 //begin
-            }
-            for(int j=i;i<cost.length;j++){
-
+                if(isBegin( gas, cost,i)){
+                    return i;
+                }
             }
         }
         return -1;
+    }
+
+    /**
+     * 判断是否能够走完一环
+     * @param gas
+     * @param cost
+     * @param index
+     * @return
+     */
+    private boolean isBegin(int[] gas, int[] cost,int index){
+        int length = gas.length;
+        int costtemp=0;
+        for(int i=0;i<gas.length;i++){
+            int temp = index;
+            if(index>=length){
+                temp = index%length;
+            }
+            //如果到达不了下一站，则返回false
+            costtemp = costtemp+gas[temp]-cost[temp];
+            if(costtemp<0){
+                return false;
+            }
+            index++;
+        }
+        return true;
     }
 }
