@@ -18,6 +18,9 @@ public class DeleteAndEarn {
     }
 
     public int deleteAndEarn(int[] nums) {
+        if(nums==null){
+            return -1;
+        }
         return -1;
     }
 }
