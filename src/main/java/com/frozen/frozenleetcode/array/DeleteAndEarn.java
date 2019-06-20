@@ -21,6 +21,10 @@ public class DeleteAndEarn {
         if(nums==null){
             return -1;
         }
+        int length = nums.length;
+        if(length>=20000){
+            return -1;
+        }
         return -1;
     }
 }
