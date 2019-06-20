@@ -31,11 +31,11 @@ public class DeleteAndEarn {
             int left = nums[i] - 1;
             int right = nums[i] + 1;
             int leftValue = 0;
-            if (left > 0 && left < length) {
+            if (left > 0 && left < length&&left!=i) {
                 leftValue = nums[left];
             }
             int rightValue = 0;
-            if (right > 0 && right < length) {
+            if (right > 0 && right < length&&right!=i) {
                 rightValue = nums[right];
             }
             sum = sum + leftValue + rightValue;
