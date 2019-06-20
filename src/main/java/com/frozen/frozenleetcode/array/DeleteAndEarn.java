@@ -13,18 +13,36 @@ package com.frozen.frozenleetcode.array;
 public class DeleteAndEarn {
     public static void main(String[] args) {
         DeleteAndEarn deleteAndEarn = new DeleteAndEarn();
-        int[] nums = new int[]{3, 4, 2};
+        int[] nums = new int[]{2, 2, 3, 3, 3, 4};
         System.out.println(deleteAndEarn.deleteAndEarn(nums));
     }
 
     public int deleteAndEarn(int[] nums) {
-        if(nums==null){
+        if (nums == null) {
             return -1;
         }
         int length = nums.length;
-        if(length>=20000){
+        if (length >= 20000) {
             return -1;
         }
-        return -1;
+        int result = -1;
+        for (int i = 0; i < length; i++) {
+            int sum = nums[i];
+            int left = nums[i] - 1;
+            int right = nums[i] + 1;
+            int leftValue = 0;
+            if (left > 0 && left < length) {
+                leftValue = nums[left];
+            }
+            int rightValue = 0;
+            if (right > 0 && right < length) {
+                rightValue = nums[right];
+            }
+            sum = sum + leftValue + rightValue;
+            if (sum > result) {
+                result = sum;
+            }
+        }
+        return result;
     }
 }
