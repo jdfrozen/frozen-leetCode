@@ -13,7 +13,7 @@ package com.frozen.frozenleetcode.array;
 public class DeleteAndEarn {
     public static void main(String[] args) {
         DeleteAndEarn deleteAndEarn = new DeleteAndEarn();
-        int[] nums = new int[]{3,1};
+        int[] nums = new int[]{1,1,1,2,4,5,5,5,6};
         System.out.println(deleteAndEarn.deleteAndEarn(nums));
     }
 
