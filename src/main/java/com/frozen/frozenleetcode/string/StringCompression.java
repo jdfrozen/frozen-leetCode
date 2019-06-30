@@ -18,7 +18,9 @@ package com.frozen.frozenleetcode.string;
  **/
 public class StringCompression {
     public static void main(String[] args) {
-
+        StringCompression compression = new StringCompression();
+        char[] chars = new char[]{'g','s','f','e','b'};
+        System.out.println(compression.compress(chars));
     }
 
     public int compress(char[] chars) {
