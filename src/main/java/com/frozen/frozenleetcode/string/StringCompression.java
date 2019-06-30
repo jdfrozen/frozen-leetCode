@@ -1,5 +1,8 @@
 package com.frozen.frozenleetcode.string;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 /**
  * @author: Frozen
  * @create: 2019-06-25 09:27
@@ -19,11 +22,33 @@ package com.frozen.frozenleetcode.string;
 public class StringCompression {
     public static void main(String[] args) {
         StringCompression compression = new StringCompression();
-        char[] chars = new char[]{'g','s','f','e','b'};
+        char[] chars = new char[]{'a','b','b','b','b','b','b','b','b','b','b','b','b'};
         System.out.println(compression.compress(chars));
+        System.out.println(Arrays.toString(chars));
     }
 
     public int compress(char[] chars) {
-        return -1;
+        if(chars==null){
+            return 0;
+        }
+        int n=chars.length;
+        int car =0;
+        for(int i=0;i<n;i++){
+            char c=chars[i];
+            chars[car++]=c;
+            int j=i;
+            while (j<n&&chars[j]==c){
+                j++;
+            }
+            int num = j-i;
+            if(num==1){
+                continue;
+            }
+            for (char cm : String.valueOf(j - i).toCharArray()) {
+                chars[car++] = cm;
+            }
+            i=j-1;
+        }
+        return car;
     }
 }
