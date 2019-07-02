@@ -1,5 +1,8 @@
 package com.frozen.frozenleetcode.string;
 
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
 import java.util.List;
 
 /**
@@ -24,6 +27,9 @@ public class WordLadder {
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        if(StringUtils.isEmpty(beginWord)||StringUtils.isEmpty(endWord)|| CollectionUtils.isEmpty(wordList)){
+            return 0;
+        }
         return 0;
     }
 }
