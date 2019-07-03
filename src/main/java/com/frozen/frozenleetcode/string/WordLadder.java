@@ -28,6 +28,8 @@ public class WordLadder {
         String beginWord = "hit";
         String endWord = "cog";
         List<String> wordList = new ArrayList<>();
+        wordList.add("hit");
+        wordList.add("cog");
         wordLadder.ladderLength(beginWord, endWord, wordList);
     }
 
