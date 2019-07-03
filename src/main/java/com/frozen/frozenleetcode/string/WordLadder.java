@@ -3,6 +3,7 @@ package com.frozen.frozenleetcode.string;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +24,18 @@ import java.util.List;
  **/
 public class WordLadder {
     public static void main(String[] args) {
-
+        WordLadder wordLadder = new WordLadder();
+        String beginWord = "hit";
+        String endWord = "cog";
+        List<String> wordList = new ArrayList<>();
+        wordLadder.ladderLength(beginWord, endWord, wordList);
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        if(StringUtils.isEmpty(beginWord)||StringUtils.isEmpty(endWord)|| CollectionUtils.isEmpty(wordList)){
+        if (StringUtils.isEmpty(beginWord) || StringUtils.isEmpty(endWord) || CollectionUtils.isEmpty(wordList)) {
             return 0;
         }
+
         return 0;
     }
 }
