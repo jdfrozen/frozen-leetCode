@@ -37,7 +37,8 @@ public class WordLadder {
         if (StringUtils.isEmpty(beginWord) || StringUtils.isEmpty(endWord) || CollectionUtils.isEmpty(wordList)) {
             return 0;
         }
-
+        //采用广度优先
         return 0;
     }
+
 }
