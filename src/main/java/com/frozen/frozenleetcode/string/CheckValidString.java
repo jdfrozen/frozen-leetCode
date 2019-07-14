@@ -6,4 +6,10 @@ package com.frozen.frozenleetcode.string;
  * @description: 678. 有效的括号字符串
  **/
 public class CheckValidString {
+    public static void main(String[] args){
+
+    }
+    public boolean checkValidString(String s) {
+        return false;
+    }
 }
