@@ -13,6 +13,10 @@ import java.util.List;
  * 返回到目标结点 target 距离为 K 的所有结点的值的列表。 答案可以以任何顺序返回。
  **/
 public class DistanceK {
+    public static void main(String[] args) {
+
+    }
+
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         return null;
     }
