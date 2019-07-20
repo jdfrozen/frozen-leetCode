@@ -14,7 +14,10 @@ import java.util.List;
  **/
 public class DistanceK {
     public static void main(String[] args) {
-
+        DistanceK distanceK =new DistanceK();
+        TreeNode root = new TreeNode(1);
+        TreeNode target = new TreeNode(1);
+        System.out.println(distanceK.distanceK(root,target,1));
     }
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
