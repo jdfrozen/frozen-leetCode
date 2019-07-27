@@ -21,6 +21,9 @@ public class DistanceK {
     }
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+        if(root==null||target==null){
+            return null;
+        }
         return null;
     }
 }
