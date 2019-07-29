@@ -20,10 +20,28 @@ public class DistanceK {
         System.out.println(distanceK.distanceK(root,target,1));
     }
 
+    /**
+     *
+     * @param root
+     * @param target
+     * @param K
+     * @return
+     */
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         if(root==null||target==null){
             return null;
         }
         return null;
+    }
+
+    /**
+     *
+     * @param root
+     * @param target
+     * @param K
+     * @param parentK
+     */
+    private void distanceK(TreeNode root, TreeNode target, int K ,int parentK){
+
     }
 }
