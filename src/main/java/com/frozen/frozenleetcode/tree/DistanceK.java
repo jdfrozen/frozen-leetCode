@@ -34,14 +34,4 @@ public class DistanceK {
         return null;
     }
 
-    /**
-     *
-     * @param root
-     * @param target
-     * @param K
-     * @param parentK
-     */
-    private void distanceK(TreeNode root, TreeNode target, int K ,int parentK){
-
-    }
 }
