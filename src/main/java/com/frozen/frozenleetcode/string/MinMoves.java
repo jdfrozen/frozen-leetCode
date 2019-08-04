@@ -14,6 +14,9 @@ public class MinMoves {
     }
 
     public int minMoves(int[] nums) {
+        if(nums==null){
+            return 0;
+        }
         return 0;
     }
 }
